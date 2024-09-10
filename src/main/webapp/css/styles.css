@@ -1,0 +1,267 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+div {
+    background-color: #b9d7f0;
+}
+
+header {
+    text-align: center;
+    font-family: 'Roboto';
+    color: darkblue;
+    font-size: 35px;
+    font-style: italic;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+    color: #333;
+    padding: 20px 0;
+    background-color: #e0f2f7;
+}
+
+.profile-page {
+    background-color: #FFFFFF;
+}
+
+.other-page {
+    background-color: #b9d7f0;
+}
+
+.auth-container {
+    width: 400px;
+    background-color: #fff;
+    margin: 5% auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.image-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-container img, .container img {
+    width: 150px;
+    height: 150px;
+    border: 8px solid #b9d7f0;
+}
+
+img.displayed{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.auth-container form {
+    padding: 20px;
+    background-color: #b9d7f0;
+}
+
+input[type="text"] {
+    width: 30%;
+    padding: 10px;
+    margin: 18px auto;
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type="auth"] {
+    width: 90%;
+    padding: 10px;
+    margin: 18px auto;
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.submit {
+    background-color: #008CBA;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.submit:hover {
+    background-color: #45a049;
+}
+
+.container {
+    width: 45%;
+    background-color: #fff;
+    margin: 50px auto;
+    /*margin: 20px auto;*/
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+}
+
+
+.container-add-note {
+    width: 60%;
+    background-color: #fff;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+}
+
+.table {
+    align: center;
+    text-align: center;
+    /*background: #efefef;*/
+    background: #FFFFFF;
+    width: 100%;
+    margin-bottom: 50px;
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
+}
+.table th {
+    font-weight: bold;
+    padding: 5px;
+    background: #efefef;
+    border: 1px solid #dddddd;
+}
+.table td {
+    border: 1px solid #dddddd;
+    padding: 5px;
+}
+
+.btn {
+    background-color: #008CBA;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.header-user {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.addNote-note-category {
+    margin-bottom: 20px;
+}
+
+.addNote-category-select {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    font-size: 16px;
+}
+
+.addNote-category-select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.addNote-text-input {
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: left;
+    vertical-align: top;
+    resize: none;
+}
+
+.addCategory-category-input {
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    text-align: left;
+    vertical-align: top;
+    resize: none;
+}
+
+.back-button {
+    display: block;
+    margin: 50px auto 0;
+    width: fit-content;
+    padding: 10px 30px;
+    font-size: 18px;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+.back-button-table {
+    display: block;
+    margin: 28px auto 0;
+    width: fit-content;
+    padding: 10px 30px;
+    font-size: 18px;
+    position: absolute;
+    left: 20px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.submit {
+    width: 300px;
+}
+
+.custom-label {
+    padding-left: 35%;
+    font-size: 20px;
+}
+
+.addUser-role-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.changeUser-role-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addUser-role {
+    text-align: center;
+}
+
+.dark-text {
+    color: #0a0a0a;
+}
