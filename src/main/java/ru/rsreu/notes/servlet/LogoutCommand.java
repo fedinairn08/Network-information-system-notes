@@ -30,7 +30,10 @@ public class LogoutCommand extends FrontCommand {
         HttpSession session = request.getSession();
         session.invalidate();
         Optional<Long> userId = UserHelper.getUserFromCookies(request.getCookies());
-        userId.ifPresent(longId -> sessionService.deleteSession(longId));
+        userId.ifPresent(longId -> {
+            sessionService.deleteSession(longId);
+            userService.updateUserStatusNotAuthorized(longId);
+        });
         redirect(Path.LOGIN.getAbsolutePath());
     }
 

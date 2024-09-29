@@ -4,6 +4,7 @@ import ru.rsreu.notes.constant.RequestConstants;
 import ru.rsreu.notes.service.NoteService;
 import ru.rsreu.notes.service.ServiceFactory;
 import ru.rsreu.notes.servlet.FrontCommand;
+import ru.rsreu.notes.utils.enums.Jsp;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class DeleteNoteCommand extends FrontCommand {
+public class NotViewedNoteCommand extends FrontCommand {
     private NoteService noteService;
 
     @Override
@@ -22,9 +23,8 @@ public class DeleteNoteCommand extends FrontCommand {
 
     @Override
     public void send() throws ServletException, IOException {
-        Long noteId = Long.valueOf(request.getParameter(RequestConstants.NOTE_ID));
-        noteService.deleteUserNoteView(noteId);
-        noteService.deleteNoteCategory(noteId);
-        noteService.deleteNote(noteId);
+        long noteId = Long.parseLong(request.getParameter(RequestConstants.NOTE_ID));
+        noteService.deleteUserNoteViews(user.getUserId(), noteId);
+        forward(Jsp.NOTE_LIST_BY_CATEGORY);
     }
 }

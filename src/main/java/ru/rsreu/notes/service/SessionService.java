@@ -9,6 +9,7 @@ import ru.rsreu.notes.entity.User;
 import ru.rsreu.notes.entity.enums.Roles;
 import ru.rsreu.notes.entity.enums.SessionStatus;
 import ru.rsreu.notes.entity.enums.UserBlockStatus;
+import ru.rsreu.notes.exceptions.UserBlockedException;
 import ru.rsreu.notes.utils.SessionValidator;
 
 import java.sql.Timestamp;
@@ -38,8 +39,12 @@ public class SessionService {
     public User createSession(String login, String password) throws Exception {
         User user = userService.getUser(login);
 
-        if (user.getUserBlockStatus().equals(UserBlockStatus.BLOCKED) || !user.getPassword().equals(password)) {
-            throw new Exception("Not authorized");
+        if (user.getUserBlockStatus().equals(UserBlockStatus.BLOCKED)) {
+            throw new UserBlockedException("Пользователь заблокирован");
+        }
+
+        if (!user.getPassword().equals(password)) {
+            throw new Exception("Неправильный пароль");
         }
 
         Timestamp activeUntil = new Timestamp(System.currentTimeMillis() + SESSION_TIME);

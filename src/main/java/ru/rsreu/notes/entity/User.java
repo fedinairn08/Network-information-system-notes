@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import ru.rsreu.notes.entity.enums.Roles;
+import ru.rsreu.notes.entity.enums.UserAuthorizationStatus;
 import ru.rsreu.notes.entity.enums.UserBlockStatus;
 
 import javax.security.auth.Subject;
@@ -46,6 +47,10 @@ public class User implements Principal {
      * Role of the user in the system (admin, moderator, user).
      */
     private Roles userRole;
+    /**
+     * Authorization status of the user (authorized or not authorized).
+     */
+    private UserAuthorizationStatus userAuthorizationStatus;
 
     /**
      * Returns the login name of the user.

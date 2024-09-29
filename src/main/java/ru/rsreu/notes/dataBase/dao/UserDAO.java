@@ -68,4 +68,10 @@ public interface UserDAO {
      * @param subscriptionUserId The ID of the user being unsubscribed from.
      */
     void unsubscribeFromUser(Long userId, Long subscriptionUserId);
+
+    boolean isSubscribedToUser(Long userId, Long subscriptionUserId);
+
+    void deleteUserNoteView(Long userId);
+
+    void userSubscriptionDelete(Long userId);
 }

@@ -13,6 +13,7 @@ public enum Path {
     MODER_PROFILE("/moderProfile"),
     ALL_NOTE_LIST("/allNoteList"),
     NOTE_LIST("/noteList"),
+    NOTE_LIST_BY_CATEGORY("/noteListByCategory"),
     LOGOUT("/logout"),
     DELETE_USER("/deleteUser"),
     DELETE_NOTE("/deleteNote"),
@@ -29,7 +30,9 @@ public enum Path {
     UNSUBSCRIBE_FROM_CATEGORY("/unsubscribeFromCategory"),
     SUBSCRIBE_TO_USER("/subscribeToUser"),
     UNSUBSCRIBE_FROM_USER("/unsubscribeFromUser"),
-    NOT_FOUND("404");
+    NOT_FOUND("404"),
+    VIEWED_NOTE("/viewedNote"),
+    NOT_VIEWED_NOTE("/notViewedNote");
 
     private final String route;
 

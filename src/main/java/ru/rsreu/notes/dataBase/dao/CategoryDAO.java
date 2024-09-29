@@ -53,4 +53,14 @@ public interface CategoryDAO {
      * @param categoryId The ID of the category being unsubscribed from.
      */
     void unsubscribeFromCategory(Long userId, Long categoryId);
+
+    /**
+     * Checks if the user is subscribed to the specified category.
+     * @param userId  The ID of the user whose subscription status is to be checked.
+     * @param categoryId The ID of the category for which the subscription status is to be checked.
+     * @return true if the user is subscribed to the category; false otherwise.
+     */
+    boolean isSubscribedToCategory(Long userId, Long categoryId);
+
+    void categorySubscriptionDelete(Long userId);
 }

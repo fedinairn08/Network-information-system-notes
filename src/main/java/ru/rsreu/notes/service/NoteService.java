@@ -6,7 +6,9 @@ import ru.rsreu.notes.dataBase.dao.NoteDAO;
 import ru.rsreu.notes.entity.Note;
 import ru.rsreu.notes.entity.enums.NoteStatus;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 public class NoteService {
@@ -55,4 +57,33 @@ public class NoteService {
     public List<Note> findAll() {return noteDAO.findAll();}
 
     public List<Note> findAllByUser(Long userId) {return noteDAO.findAllByToUser(userId);}
+
+    public List<Note> findAllByCategory(Long categoryId) {return noteDAO.findAllByCategory(categoryId);}
+
+    public void deleteUserNoteView(Long noteId) {noteDAO.deleteUserNoteView(noteId);}
+
+    public void deleteNotesByUser(Long userId) {noteDAO.deleteNotesByUser(userId);}
+
+    public void deleteUserNoteViewsByUser(Long userId) {noteDAO.deleteUserNoteViewsByUser(userId);}
+
+    public void deleteNoteCategoriesByUser(Long userId) {noteDAO.deleteNoteCategoriesByUser(userId);}
+
+    public boolean isNoteViewedByUser(Long noteId, Long userId) {return noteDAO.isNoteViewedByUser(noteId, userId);}
+
+    public void saveUserNoteView(long userId, long noteId) {noteDAO.saveUserNoteView(userId, noteId);}
+
+    public void deleteUserNoteViews(Long userId, Long noteId) {
+        noteDAO.deleteUserNoteViews(userId, noteId);
+    }
+
+    public Map<Note, Boolean> getViewedNotes(Long userId, List<Note> notes) {
+        Map<Note, Boolean> viewedNote = new HashMap<>();
+
+        for (Note note : notes) {
+            boolean isViewed = isNoteViewedByUser(userId, note.getNoteId());
+            viewedNote.put(note, isViewed);
+        }
+
+        return viewedNote;
+    }
 }

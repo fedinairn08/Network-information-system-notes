@@ -27,7 +27,6 @@ public class PathMappingConfig {
 
             Map.entry(Path.MODER_PROFILE, new ModerProfileCommand()),
             Map.entry(Path.ALL_NOTE_LIST, new AllNoteListCommand()),
-            Map.entry(Path.NOTE_LIST, new NoteListCommand()),
             Map.entry(Path.CATEGORY_LIST, new CategoryListCommand()),
             Map.entry(Path.ADD_CATEGORY, new AddCategoryCommand()),
             Map.entry(Path.BLOCK_USER, new BlockUserCommand()),
@@ -37,11 +36,15 @@ public class PathMappingConfig {
             Map.entry(Path.DELETE_NOTE, new DeleteNoteCommand()),
 
             Map.entry(Path.USER_PROFILE, new UserProfileCommand()),
+            Map.entry(Path.NOTE_LIST, new NoteListCommand()),
+            Map.entry(Path.NOTE_LIST_BY_CATEGORY, new NoteListByCategoryCommand()),
             Map.entry(Path.ADD_NOTE, new AddNoteCommand()),
             Map.entry(Path.ONLY_USER_LIST, new OnlyUserListCommand()),
             Map.entry(Path.SUBSCRIBE_TO_CATEGORY, new SubscribeCategoryCommand()),
             Map.entry(Path.UNSUBSCRIBE_FROM_CATEGORY, new UnsubscribeCategoryCommand()),
             Map.entry(Path.SUBSCRIBE_TO_USER, new SubscribeUserCommand()),
+            Map.entry(Path.VIEWED_NOTE, new ViewedNoteCommand()),
+            Map.entry(Path.NOT_VIEWED_NOTE, new NotViewedNoteCommand()),
             Map.entry(Path.CATEGORY_SUBSCRIPTIONS_LIST, new CategorySubscriptionsListCommand()),
             Map.entry(Path.USER_SUBSCRIPTIONS_LIST, new UserSubscriptionsListCommand()),
             Map.entry(Path.UNSUBSCRIBE_FROM_USER, new UnsubscribeUserCommand())
@@ -65,6 +68,7 @@ public class PathMappingConfig {
             Path.ALL_NOTE_LIST,
             Path.ONLY_USER_LIST,
             Path.NOTE_LIST,
+            Path.NOTE_LIST_BY_CATEGORY,
             Path.USER_PROFILE,
             Path.ADD_CATEGORY,
             Path.ADD_NOTE,
@@ -74,7 +78,9 @@ public class PathMappingConfig {
             Path.SUBSCRIBE_TO_CATEGORY,
             Path.UNSUBSCRIBE_FROM_CATEGORY,
             Path.SUBSCRIBE_TO_USER,
-            Path.UNSUBSCRIBE_FROM_USER
+            Path.UNSUBSCRIBE_FROM_USER,
+            Path.VIEWED_NOTE,
+            Path.NOT_VIEWED_NOTE
     );
 
     public static FrontCommand getCommand(String allPath) {

@@ -27,9 +27,18 @@
                 <td>${session.getUser().getFirstName()}</td>
                 <td>
                     <div class="w-full flex items-center justify-center space-x-2">
-                        <button class="text-gray-700 hover:text-gray-900" onclick="subscribeToUser(${session.getUser().getUserId()})">
-                            <span class="material-symbols-outlined">subscriptions</span> Подписаться
-                        </button>
+                        <c:choose>
+                            <c:when test="${userSubscriptionStatus[session.getUser().getUserId()] == true}">
+                                <button class="text-gray-700 hover:text-gray-900" onclick="unsubscribeFromUser(${session.getUser().getUserId()})">
+                                    <span class="material-symbols-outlined">cancel</span> Отписаться
+                                </button>
+                            </c:when>
+                            <c:otherwise>
+                                <button class="text-gray-700 hover:text-gray-900" onclick="subscribeToUser(${session.getUser().getUserId()})">
+                                    <span class="material-symbols-outlined">subscriptions</span> Подписаться
+                                </button>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </td>
             </tr>

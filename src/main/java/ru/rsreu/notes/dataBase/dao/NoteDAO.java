@@ -21,6 +21,8 @@ public interface NoteDAO {
      */
     List<Note> findAllByToUser(Long toUserId);
 
+    List<Note> findAllByCategory(Long categoryId);
+
     /**
      * Updates an existing note in the database.
      * @param note The note to be updated.
@@ -60,4 +62,18 @@ public interface NoteDAO {
      * @return The note with the given ID, or null if not found.
      */
     Note findNoteById(Long id);
+
+    void deleteUserNoteView(Long noteId);
+
+    void deleteNotesByUser (Long userId);
+
+    void deleteUserNoteViewsByUser(Long userId);
+
+    void deleteNoteCategoriesByUser(Long userId);
+
+    boolean isNoteViewedByUser(Long noteId, Long userId);
+
+    void saveUserNoteView(long userId, long noteId);
+
+    void deleteUserNoteViews(Long userId, Long noteId);
 }

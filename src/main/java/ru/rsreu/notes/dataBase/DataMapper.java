@@ -6,6 +6,7 @@ import ru.rsreu.notes.entity.Session;
 import ru.rsreu.notes.entity.User;
 import ru.rsreu.notes.entity.enums.NoteStatus;
 import ru.rsreu.notes.entity.enums.Roles;
+import ru.rsreu.notes.entity.enums.UserAuthorizationStatus;
 import ru.rsreu.notes.entity.enums.UserBlockStatus;
 import ru.rsreu.notes.dataBase.controller.NoteDAOImpl;
 
@@ -20,7 +21,8 @@ public class DataMapper {
                 resultSet.getString("password"),
                 resultSet.getString("first_name"),
                 resultSet.getString("last_name"),
-                Roles.valueOf(resultSet.getString("user_role"))
+                Roles.valueOf(resultSet.getString("user_role")),
+                UserAuthorizationStatus.valueOf(resultSet.getString("user_authorization_status"))
         );
     }
 

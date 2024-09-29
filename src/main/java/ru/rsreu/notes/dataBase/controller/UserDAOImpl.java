@@ -89,7 +89,8 @@ public class UserDAOImpl extends AbstractController implements UserDAO {
             statement.setString(4, user.getFirstName());
             statement.setString(5, user.getLastName());
             statement.setString(6, user.getUserRole().toString());
-            statement.setLong(7, user.getUserId());
+            statement.setString(7, user.getUserAuthorizationStatus().toString());
+            statement.setLong(8, user.getUserId());
 
             statement.executeUpdate();
 
@@ -139,6 +140,7 @@ public class UserDAOImpl extends AbstractController implements UserDAO {
             statement.setString(4, user.getFirstName());
             statement.setString(5, user.getLastName());
             statement.setString(6, user.getUserRole().toString());
+            statement.setString(7, user.getUserAuthorizationStatus().toString());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -173,6 +175,47 @@ public class UserDAOImpl extends AbstractController implements UserDAO {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setLong(1, userId);
             statement.setLong(2, subscriptionUserId);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void userSubscriptionDelete(Long userId) {
+        String query = resourcer.getString("user.subscription.delete.by.user");
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isSubscribedToUser(Long userId, Long subscriptionUserId) {
+        String query = resourcer.getString("user.subscription.check");
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+            statement.setLong(2, subscriptionUserId);
+
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public void deleteUserNoteView(Long userId) {
+        String query = resourcer.getString("user.note.views.delete.by.user");
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
 
             statement.executeUpdate();
         } catch (SQLException e) {

@@ -23,7 +23,6 @@ tasks.withType(JavaCompile) {
 
 dependencies {
     implementation 'org.projectlombok:lombok:1.18.22'
-//    compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
     compileOnly('javax.validation:validation-api:2.0.1.Final')
     compileOnly('javax.servlet:javax.servlet-api:4.0.1')
     implementation 'javax.servlet:jstl:1.2'

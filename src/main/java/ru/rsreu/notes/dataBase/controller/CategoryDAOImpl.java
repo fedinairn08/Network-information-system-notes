@@ -69,6 +69,19 @@ public class CategoryDAOImpl extends AbstractController implements CategoryDAO {
     }
 
     @Override
+    public void categorySubscriptionDelete(Long userId) {
+        String query = resourcer.getString("category.subscription.delete.by.user");
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public List<Category> findAll() {
         String query = resourcer.getString("category.find.all");
         List<Category> categories = new ArrayList<>();
@@ -107,7 +120,6 @@ public class CategoryDAOImpl extends AbstractController implements CategoryDAO {
         return categories;
     }
 
-
     @Override
     public void save(Category category) {
         String query = resourcer.getString("category.save");
@@ -132,6 +144,20 @@ public class CategoryDAOImpl extends AbstractController implements CategoryDAO {
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public boolean isSubscribedToCategory(Long userId, Long categoryId) {
+        String query = resourcer.getString("category.subscription.check");
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+            statement.setLong(2, categoryId);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

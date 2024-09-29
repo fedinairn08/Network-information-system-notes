@@ -17,14 +17,26 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="category" items="${categories}">
+    <c:forEach var="entry" items="${categoriesWithStatus}">
+        <c:set var="category" value="${entry.key}" />
+        <c:set var="isSubscribed" value="${entry.value}" />
+
         <tr>
             <td>${category.getCategory()}</td>
             <td>
                 <div class="w-full flex items-center justify-center space-x-2">
-                    <button class="text-gray-700 hover:text-gray-900" onclick="subscribeToCategory(${category.getCategoryId()})">
-                        <span class="material-symbols-outlined">subscriptions</span> Подписаться
-                    </button>
+                    <c:choose>
+                        <c:when test="${isSubscribed}">
+                            <button class="text-gray-700 hover:text-gray-900" onclick="unsubscribeFromCategory(${category.getCategoryId()})">
+                                <span class="material-symbols-outlined">cancel</span> Отписаться
+                            </button>
+                        </c:when>
+                        <c:otherwise>
+                            <button class="text-gray-700 hover:text-gray-900" onclick="subscribeToCategory(${category.getCategoryId()})">
+                                <span class="material-symbols-outlined">subscriptions</span> Подписаться
+                            </button>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </td>
         </tr>

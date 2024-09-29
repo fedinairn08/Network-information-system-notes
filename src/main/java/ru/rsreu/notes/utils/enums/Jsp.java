@@ -5,6 +5,7 @@ public enum Jsp {
     USER_PROFILE("/jsp/user/userProfile.jsp"),
     ALL_NOTE_LIST("/jsp/moder/allNoteList.jsp"),
     NOTE_LIST("/jsp/user/noteList.jsp"),
+    NOTE_LIST_BY_CATEGORY("/jsp/user/noteListByCategory.jsp"),
     CATEGORY_LIST("/jsp/user/categoryList.jsp"),
     CATEGORY_SUBSCRIPTIONS_LIST("/jsp/user/categorySubscriptionsList.jsp"),
     USER_SUBSCRIPTIONS_LIST("/jsp/user/userSubscriptionsList.jsp"),

@@ -36,6 +36,7 @@ public class AuthorizationConfig {
                     LOGOUT,
                     ADD_NOTE,
                     NOTE_LIST,
+                    NOTE_LIST_BY_CATEGORY,
                     DELETE_NOTE,
                     CATEGORY_LIST,
                     CATEGORY_SUBSCRIPTIONS_LIST,
@@ -44,7 +45,9 @@ public class AuthorizationConfig {
                     SUBSCRIBE_TO_CATEGORY,
                     SUBSCRIBE_TO_USER,
                     UNSUBSCRIBE_FROM_CATEGORY,
-                    UNSUBSCRIBE_FROM_USER
+                    UNSUBSCRIBE_FROM_USER,
+                    VIEWED_NOTE,
+                    NOT_VIEWED_NOTE
             ))
     );
 

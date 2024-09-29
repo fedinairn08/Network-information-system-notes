@@ -3,10 +3,14 @@ package ru.rsreu.notes.service;
 import lombok.RequiredArgsConstructor;
 import ru.rsreu.notes.dataBase.DAOFactory;
 import ru.rsreu.notes.dataBase.dao.UserDAO;
+import ru.rsreu.notes.entity.Category;
 import ru.rsreu.notes.entity.User;
+import ru.rsreu.notes.entity.enums.UserAuthorizationStatus;
 import ru.rsreu.notes.entity.enums.UserBlockStatus;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RequiredArgsConstructor
@@ -61,5 +65,27 @@ public class UserService {
     public List<User> findAllSubscriptionsByUser(Long id) {return userDAO.findAllSubscriptionsByUser(id);}
     public void unsubscribeFromUser(Long userId, Long subscriptionUserId) {
         userDAO.unsubscribeFromUser(userId, subscriptionUserId);
+    }
+
+    public void userSubscriptionDelete(Long userId) {
+        userDAO.userSubscriptionDelete(userId);
+    }
+
+    public void updateUserStatusNotAuthorized(Long userId) {
+        User user = this.getUser(userId);
+        this.updateUser(user.setUserAuthorizationStatus(UserAuthorizationStatus.NOT_AUTHORIZED));
+    }
+
+    public void updateUserStatusAuthorized(Long userId) {
+        User user = this.getUser(userId);
+        this.updateUser(user.setUserAuthorizationStatus(UserAuthorizationStatus.AUTHORIZED));
+    }
+
+    public boolean isSubscribedToUser(Long userId, Long subscriptionUserId) {
+        return userDAO.isSubscribedToUser(userId, subscriptionUserId);
+    }
+
+    public void deleteUserNoteView(Long userId) {
+        userDAO.deleteUserNoteView(userId);
     }
 }

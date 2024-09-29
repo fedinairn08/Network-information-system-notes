@@ -1,3 +1,5 @@
+# Network-information-system-notes
+
 В данном файле представлено указание ролей темы "Заметки"
 
 Логическая модель базы данных - https://drawsql.app/teams/irina-23/diagrams/notes
@@ -33,4 +35,3 @@
       - Просмотр списка подписок на категории
       - Просмотр списка пользователей
       - Просмотр списка категорий
-# Network-information-system-notes

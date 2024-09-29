@@ -61,6 +61,25 @@ public class NoteDAOImpl extends AbstractController implements NoteDAO {
     }
 
     @Override
+    public List<Note> findAllByCategory(Long categoryId) {
+        String query = resourcer.getString("note.find.all.category");
+        List<Note> notes = new ArrayList<>();
+
+        try (PreparedStatement st = connection.prepareStatement(query)) {
+            st.setLong(1, categoryId);
+            ResultSet resultSet = st.executeQuery();
+
+            while (resultSet.next()) {
+                notes.add(DataMapper.toNote(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return notes;
+    }
+
+    @Override
     public void update(Note note) {
         String query = resourcer.getString("note.update");
 
@@ -145,6 +164,33 @@ public class NoteDAOImpl extends AbstractController implements NoteDAO {
         }
     }
 
+    public void saveUserNoteView(long userId, long noteId) {
+        String query = resourcer.getString("user.note.views.save");
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+            statement.setLong(2, noteId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isNoteViewedByUser(Long userId, Long noteId) {
+        String query = resourcer.getString("note.view.check");
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+            statement.setLong(2, noteId);
+
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     @Override
     public Note findNoteById(Long id) {
         String query = resourcer.getString("note.find.id");
@@ -164,6 +210,70 @@ public class NoteDAOImpl extends AbstractController implements NoteDAO {
         }
 
         return note;
+    }
+
+    @Override
+    public void deleteUserNoteView(Long noteId) {
+        String query = resourcer.getString("user.note.views.delete.by.note");
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, noteId);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteNotesByUser(Long userId) {
+        String query = resourcer.getString("note.delete.by.user");
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteUserNoteViewsByUser(Long userId) {
+        String query = resourcer.getString("user.note.views.delete");
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteUserNoteViews(Long userId, Long noteId) {
+        String query = resourcer.getString("user.note.views.delete");
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+            statement.setLong(2, noteId);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteNoteCategoriesByUser(Long userId) {
+        String query = resourcer.getString("note.categories.delete.by.user");
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, userId);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Category> findCategoriesByNoteId(Long noteId) {

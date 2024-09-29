@@ -21,11 +21,13 @@ CREATE TABLE users(
     user_id INTEGER,
     user_block_status VARCHAR(255) CHECK
         (user_block_status IN('')) NOT NULL,
-        login VARCHAR(255) NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        first_name VARCHAR(255) NOT NULL,
-        last_name VARCHAR(255) NOT NULL,
-        user_role VARCHAR(255) NOT NULL
+    login VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    user_role VARCHAR(255) NOT NULL,
+    user_authorization_status VARCHAR(255) CHECK
+        (user_authorization_status IN('')) NOT NULL
 );
 
 CREATE SEQUENCE users_seq START WITH 1 INCREMENT BY 1;
@@ -132,3 +134,12 @@ ALTER TABLE
     note_categories ADD CONSTRAINT "notecategories_note_id_foreign" FOREIGN KEY(note_category_note_id) REFERENCES notes(note_id) ON DELETE CASCADE;
 ALTER TABLE
     notes ADD CONSTRAINT "notes_user_id_foreign" FOREIGN KEY(notes_user_id) REFERENCES users(user_id) ON DELETE CASCADE;
+
+
+CREATE TABLE user_note_views (
+     user_note_views_user_id INTEGER NOT NULL,
+     user_note_views_note_id INTEGER NOT NULL,
+     PRIMARY KEY (user_note_views_user_id, user_note_views_note_id),
+     FOREIGN KEY (user_note_views_user_id) REFERENCES Users(user_id),
+     FOREIGN KEY (user_note_views_note_id) REFERENCES Notes(note_id)
+);

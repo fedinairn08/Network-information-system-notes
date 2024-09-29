@@ -1,61 +1,68 @@
 -- Заполнение таблицы пользователей
-INSERT INTO USERS (user_block_status, login, password, first_name, last_name, user_role)
+INSERT INTO USERS (user_block_status, login, password, first_name, last_name, user_role, user_authorization_status)
 VALUES (
            'NOT_BLOCKED',
            'admin1',
            '1',
            'admin1',
            'last',
-           'ADMIN'
+           'ADMIN',
+            'NOT_AUTHORIZED'
        );
 
-INSERT INTO USERS (user_block_status, login, password, first_name, last_name, user_role)
+INSERT INTO USERS (user_block_status, login, password, first_name, last_name, user_role, user_authorization_status)
 VALUES (
            'NOT_BLOCKED',
            'admin2',
            '1',
            'admin2',
            'last',
-           'ADMIN'
+           'ADMIN',
+           'NOT_AUTHORIZED'
        );
 
-INSERT INTO USERS (user_block_status, login, password, first_name, last_name, user_role)
+INSERT INTO USERS (user_block_status, login, password, first_name, last_name, user_role, user_authorization_status)
 VALUES (
            'NOT_BLOCKED',
            'moder1',
            '1',
            'moder1',
            'last',
-           'MODERATOR'
+           'MODERATOR',
+           'NOT_AUTHORIZED'
        );
 
-INSERT INTO USERS (user_block_status, login, password, first_name, last_name, user_role)
+INSERT INTO USERS (user_block_status, login, password, first_name, last_name, user_role, user_authorization_status)
 VALUES (
            'NOT_BLOCKED',
            'moder2',
            '1',
            'moder2',
            'last',
-           'MODERATOR');
-
-INSERT INTO USERS (user_block_status, login, password, first_name, last_name, user_role)
-VALUES (
-           'NOT_BLOCKED',
-           'user1',
-           '1',
-           'user1',
-           'last',
-           'USER'
+           'MODERATOR',
+           'NOT_AUTHORIZED'
        );
 
-INSERT INTO USERS (user_block_status, login, password, first_name, last_name, user_role)
+INSERT INTO USERS (user_block_status, login, password, first_name, last_name, user_role, user_authorization_status)
+VALUES (
+           'NOT_BLOCKED',
+           'user1',
+           '1',
+           'user1',
+           'last',
+           'USER',
+           'NOT_AUTHORIZED'
+       );
+
+INSERT INTO USERS (user_block_status, login, password, first_name, last_name, user_role, user_authorization_status)
 VALUES (
            'NOT_BLOCKED',
            'user2',
            '1',
            'user2',
            'last',
-           'USER'
+           'USER',
+           'NOT_AUTHORIZED'
        );
 
 

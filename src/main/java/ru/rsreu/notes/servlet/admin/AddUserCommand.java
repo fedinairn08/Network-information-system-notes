@@ -10,6 +10,7 @@ import ru.rsreu.notes.constant.RequestAttribute;
 import ru.rsreu.notes.constant.RequestConstants;
 import ru.rsreu.notes.entity.User;
 import ru.rsreu.notes.entity.enums.Roles;
+import ru.rsreu.notes.entity.enums.UserAuthorizationStatus;
 import ru.rsreu.notes.entity.enums.UserBlockStatus;
 import ru.rsreu.notes.service.ServiceFactory;
 import ru.rsreu.notes.service.UserService;
@@ -64,7 +65,8 @@ public class AddUserCommand extends FrontCommand {
                 request.getParameter(RequestConstants.PASSWORD),
                 request.getParameter(RequestConstants.FIRST_NAME),
                 request.getParameter(RequestConstants.LAST_NAME),
-                Roles.valueOf(request.getParameter(RequestConstants.ROLE))
+                Roles.valueOf(request.getParameter(RequestConstants.ROLE)),
+                UserAuthorizationStatus.NOT_AUTHORIZED
         );
     }
 }

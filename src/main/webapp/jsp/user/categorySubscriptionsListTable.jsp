@@ -24,6 +24,10 @@
                     <button class="text-gray-700 hover:text-gray-900" onclick="unsubscribeFromCategory(${category.getCategoryId()})">
                         <span class="material-symbols-outlined">cancel</span> Отписаться
                     </button>
+                    <button class="text-gray-700 hover:text-gray-900" name="submit"
+                            onclick="noteListByCategory(${category.getCategoryId()})">
+                        <span class="material-symbols-outlined">edit</span>Посмотреть заметки категории
+                    </button>
                 </div>
             </td>
         </tr>
