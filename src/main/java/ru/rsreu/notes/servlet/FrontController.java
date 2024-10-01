@@ -1,7 +1,5 @@
 package ru.rsreu.notes.servlet;
 
-import ru.rsreu.notes.config.PathMappingConfig;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,12 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/FrontControllerServlet")
 public class FrontController extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private HttpRequestClient getClient;
+    private HttpRequestClient postClient;
 
     /**
      * Default constructor.
      */
     public FrontController() {
         super();
+        getClient = new GetRequestClient();
+        postClient = new PostRequestClient();
     }
 
     /**
@@ -28,11 +30,11 @@ public class FrontController extends HttpServlet {
      * @param response The HTTP response object.
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-        FrontCommand command = PathMappingConfig.getCommand(request.getPathInfo());
+        Command command = getClient.initCommand(request.getPathInfo(), getServletContext(), request, response);
+        CommandInvoker commandInvoker = new HttpRequestInvoker(command);
 
         try {
-            command.init(getServletContext(), request, response);
-            command.process();
+            commandInvoker.invokeCommand();
         } catch (Exception exception) {
             exception.printStackTrace();
         }
@@ -44,11 +46,11 @@ public class FrontController extends HttpServlet {
      * @param response The HTTP response object.
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        FrontCommand command = PathMappingConfig.getCommand(request.getPathInfo());
+        Command command = postClient.initCommand(request.getPathInfo(), getServletContext(), request, response);
+        CommandInvoker commandInvoker = new HttpRequestInvoker(command);
 
         try {
-            command.init(getServletContext(), request, response);
-            command.send();
+            commandInvoker.invokeCommand();
         } catch (Exception exception) {
             exception.printStackTrace();
         }

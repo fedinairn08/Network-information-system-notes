@@ -118,6 +118,15 @@ END;
 ALTER TABLE
     notes ADD PRIMARY KEY(note_id);
 
+--Таблица для связи между заметками и пользователями
+CREATE TABLE user_note_views (
+     user_note_views_user_id INTEGER NOT NULL,
+     user_note_views_note_id INTEGER NOT NULL,
+     PRIMARY KEY (user_note_views_user_id, user_note_views_note_id),
+     FOREIGN KEY (user_note_views_user_id) REFERENCES Users(user_id),
+     FOREIGN KEY (user_note_views_note_id) REFERENCES Notes(note_id)
+);
+
 ALTER TABLE
     user_subscriptions ADD CONSTRAINT "usersubscriptions_user_id_foreign" FOREIGN KEY(user_subscription_user_id) REFERENCES users(user_id) ON DELETE CASCADE;
 ALTER TABLE
@@ -134,12 +143,3 @@ ALTER TABLE
     note_categories ADD CONSTRAINT "notecategories_note_id_foreign" FOREIGN KEY(note_category_note_id) REFERENCES notes(note_id) ON DELETE CASCADE;
 ALTER TABLE
     notes ADD CONSTRAINT "notes_user_id_foreign" FOREIGN KEY(notes_user_id) REFERENCES users(user_id) ON DELETE CASCADE;
-
-
-CREATE TABLE user_note_views (
-     user_note_views_user_id INTEGER NOT NULL,
-     user_note_views_note_id INTEGER NOT NULL,
-     PRIMARY KEY (user_note_views_user_id, user_note_views_note_id),
-     FOREIGN KEY (user_note_views_user_id) REFERENCES Users(user_id),
-     FOREIGN KEY (user_note_views_note_id) REFERENCES Notes(note_id)
-);

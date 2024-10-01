@@ -10,12 +10,6 @@ import ru.rsreu.notes.entity.User;
  */
 public interface UserDAO {
     /**
-     * Retrieves all users from the database.
-     * @return A list of all users.
-     */
-    List<User> findAllUsers();
-
-    /**
      * Finds a user by their login.
      * @param login The login name of the user to find.
      * @return The user with the given login, or null if not found.
@@ -69,9 +63,23 @@ public interface UserDAO {
      */
     void unsubscribeFromUser(Long userId, Long subscriptionUserId);
 
+    /**
+     * Checks if a user is subscribed to another user.
+     * @param userId The ID of the user.
+     * @param subscriptionUserId The ID of the user being checked.
+     * @return True if the user is subscribed, false otherwise.
+     */
     boolean isSubscribedToUser(Long userId, Long subscriptionUserId);
 
+    /**
+     * Deletes a user's note view.
+     * @param userId The ID of the user.
+     */
     void deleteUserNoteView(Long userId);
 
+    /**
+     * Deletes all subscriptions for the specified user.
+     * @param userId The ID of the user whose subscriptions are to be deleted.
+     */
     void userSubscriptionDelete(Long userId);
 }

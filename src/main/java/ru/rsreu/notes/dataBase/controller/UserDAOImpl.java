@@ -26,24 +26,6 @@ public class UserDAOImpl extends AbstractController implements UserDAO {
     }
 
     @Override
-    public List<User> findAllUsers() {
-        String query = resourcer.getString("user.find.all");
-        List<User> users = new ArrayList<>();
-
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                users.add(DataMapper.toUser(resultSet));
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return users;
-    }
-
-    @Override
     public User findUserByLogin(String login) {
         String query = ProjectResourcer.getInstance().getString("user.find.login");
         try (PreparedStatement statement = connection.prepareStatement(query)) {

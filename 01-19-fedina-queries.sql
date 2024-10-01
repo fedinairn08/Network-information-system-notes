@@ -14,6 +14,8 @@ DELETE FROM Users WHERE user_id = ?;
 INSERT INTO user_subscriptions (user_subscription_user_id, subscription_user_id) VALUES (?, ?);
 -- Отмена подписки пользователя на другого пользователя
 DELETE FROM User_subscriptions WHERE user_subscription_user_id = ? AND subscription_user_id = ?;
+-- Проверка подписки пользователя на другого пользователя
+SELECT * FROM User_subscriptions WHERE user_subscription_user_id = ? AND subscription_user_id = ?
 -- Обновление времени активности сессии по ее id
 UPDATE Sessions Set active_until = ? WHERE session_id = ?;
 -- Создание новой сессии для пользователя
@@ -26,6 +28,8 @@ DELETE FROM Sessions WHERE session_user_id = ?;
 SELECT * FROM Sessions s LEFT JOIN Users u ON s.session_user_id = u.user_id WHERE u.user_id = ? ORDER BY s.active_until DESC;
 -- Получение заметок пользователя
 SELECT DISTINCT n.note_id, n.note_status, n.NOTE_STATUS, n.text, n.date_publication, u.user_id, u.first_name, u.last_name, u.user_block_status, u.login, u.password, u.user_role FROM Notes n JOIN Users u ON n.notes_user_id = u.user_id JOIN Note_categories nc ON n.note_id=nc.note_category_note_id JOIN Categories c ON nc.note_category_category_id = c.category_id WHERE n.notes_user_id = ?;
+-- Получение информации о заметках определенной категории
+SELECT DISTINCT n.note_id, n.note_status, n.text, n.date_publication, c.category_id, c.category, u.user_id, u.user_block_status, u.login, u.password, u.first_name, u.last_name, u.user_role, u.user_authorization_status FROM Notes n JOIN note_categories nc ON n.note_id = nc.note_category_note_id JOIN Categories c ON nc.note_category_category_id = c.category_id JOIN users u ON n.notes_user_id = u.user_id WHERE c.category_id = ?
 -- Добавление новой заметки
 INSERT INTO Notes (note_status, text, notes_user_id, date_publication) VALUES (?, ?, ?, ?);
 -- Связывание заметки с категорией
@@ -38,10 +42,14 @@ SELECT c.category_id, c.category FROM Categories c JOIN Note_categories nc ON c.
 SELECT DISTINCT n.note_id, n.note_status, n.NOTE_STATUS, n.text, n.date_publication, u.user_id, u.first_name, u.last_name, u.user_block_status, u.login, u.password, u.user_role FROM Notes n JOIN Users u ON n.notes_user_id = u.user_id JOIN Note_Categories nc ON n.note_id = nc.note_category_note_id JOIN Categories c ON nc.note_category_category_id = c.category_id;
 -- Удаление заметки по ее id
 DELETE FROM Notes WHERE note_id = ?;
+-- Удаление всех заметок пользователя
+DELETE FROM Notes WHERE notes_user_id = ?
 -- Получение заметки
 SELECT * FROM Notes n JOIN Users u ON u.user_id = n.notes_user_id WHERE note_id = ?;
 -- Удаление всех связей заметки с категориями
 DELETE FROM Note_categories WHERE note_category_note_id = ?;
+-- Удаление связей между заметками и категориями
+DELETE FROM note_categories WHERE note_category_note_id IN (SELECT note_id FROM notes WHERE notes_user_id = ?)
 -- Добавление новой категории
 INSERT INTO Categories (category) VALUES (?);
 -- Обновление информации о категории по ее id
@@ -58,3 +66,17 @@ SELECT * FROM User_subscriptions us JOIN Users u ON us.subscription_user_id = u.
 INSERT INTO Category_subscriptions (category_subscriptions_user_id, category_subscriptions_category_id) VALUES (?, ?)
 -- Отмена подписки пользователя на категорию
 DELETE FROM Category_subscriptions WHERE category_subscriptions_user_id = ? AND category_subscriptions_category_id = ?
+-- Удаление подписки пользователя на категорию
+DELETE FROM Category_subscriptions WHERE category_subscriptions_user_id = ?
+-- Проверка подписки пользователя на категорию
+SELECT * FROM Category_subscriptions WHERE Category_subscriptions_user_id = ? AND Category_subscriptions_category_id = ?
+-- Добавление записи о просмотре заметки пользователем
+INSERT INTO User_note_views (user_note_views_user_id, user_note_views_note_id) VALUES (?, ?)
+-- Удаление всех записей о просмотрах заметок пользователем
+DELETE FROM User_note_views WHERE user_note_views_user_id = ?
+-- Удаление записи о просмотре конкретной заметки пользователем
+DELETE FROM User_note_views WHERE user_note_views_user_id = ? AND user_note_views_note_id = ?
+-- Удаление всех записей о просмотрах конкретной заметки
+DELETE FROM User_note_views WHERE user_note_views_note_id = ?
+-- Проверка, просматривал ли пользователь конкретную заметку
+SELECT * FROM User_note_views WHERE user_note_views_user_id = ? AND user_note_views_note_id = ?

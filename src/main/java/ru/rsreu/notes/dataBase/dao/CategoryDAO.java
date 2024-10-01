@@ -62,5 +62,9 @@ public interface CategoryDAO {
      */
     boolean isSubscribedToCategory(Long userId, Long categoryId);
 
+    /**
+     * Deletes all subscriptions for the specified user.
+     * @param userId he ID of the user whose subscriptions are to be deleted.
+     */
     void categorySubscriptionDelete(Long userId);
 }

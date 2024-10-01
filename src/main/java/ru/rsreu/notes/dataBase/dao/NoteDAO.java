@@ -21,6 +21,11 @@ public interface NoteDAO {
      */
     List<Note> findAllByToUser(Long toUserId);
 
+    /**
+     * Retrieves all notes associated with a specific category.
+     * @param categoryId The ID of the category whose notes are to be retrieved.
+     * @return A list of notes associated with the given category.
+     */
     List<Note> findAllByCategory(Long categoryId);
 
     /**
@@ -63,17 +68,49 @@ public interface NoteDAO {
      */
     Note findNoteById(Long id);
 
+    /**
+     * Deletes a user's view of a note.
+     * @param noteId The ID of the note whose view is to be deleted.
+     */
     void deleteUserNoteView(Long noteId);
 
+    /**
+     * Deletes all notes associated with a given user.
+     * @param userId The ID of the user whose notes are to be deleted.
+     */
     void deleteNotesByUser (Long userId);
 
+    /**
+     * Deletes all user note views associated with a given user.
+     * @param userId The ID of the user whose views are to be deleted.
+     */
     void deleteUserNoteViewsByUser(Long userId);
 
+    /**
+     * Deletes all note category associations associated with a given user.
+     * @param userId The ID of the user whose associations are to be deleted.
+     */
     void deleteNoteCategoriesByUser(Long userId);
 
+    /**
+     * Checks if a user has viewed a specific note.
+     * @param noteId The ID of the note.
+     * @param userId The ID of the user.
+     * @return True if the user has viewed the note, false otherwise.
+     */
     boolean isNoteViewedByUser(Long noteId, Long userId);
 
+    /**
+     * Saves a new user note view to the database.
+     * @param userId The ID of the user viewing the note.
+     * @param noteId The ID of the note being viewed.
+     */
     void saveUserNoteView(long userId, long noteId);
 
+    /**
+     * Deletes a user's view of a specific note.
+     * @param userId The ID of the user.
+     * @param noteId The ID of the note.
+     */
     void deleteUserNoteViews(Long userId, Long noteId);
 }
