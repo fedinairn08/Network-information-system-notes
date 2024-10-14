@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public abstract class HttpRequestClient {
 
-    public abstract Command initCommand(String path, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response);
+    public abstract ICommand initCommand(String path, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response);
 
     protected boolean isPath(String path, Path value) {
         return value.getRelativePath().equalsIgnoreCase(path.split("&")[0]);

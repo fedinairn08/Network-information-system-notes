@@ -4,9 +4,9 @@ import javax.servlet.ServletException;
 import java.io.IOException;
 
 public class HttpRequestInvoker implements CommandInvoker {
-    private Command command;
+    private ICommand command;
 
-    public HttpRequestInvoker(Command command) {
+    public HttpRequestInvoker(ICommand command) {
         this.command = command;
     }
 

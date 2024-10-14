@@ -30,7 +30,7 @@ public class FrontController extends HttpServlet {
      * @param response The HTTP response object.
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-        Command command = getClient.initCommand(request.getPathInfo(), getServletContext(), request, response);
+        ICommand command = getClient.initCommand(request.getPathInfo(), getServletContext(), request, response);
         CommandInvoker commandInvoker = new HttpRequestInvoker(command);
 
         try {
@@ -46,7 +46,7 @@ public class FrontController extends HttpServlet {
      * @param response The HTTP response object.
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        Command command = postClient.initCommand(request.getPathInfo(), getServletContext(), request, response);
+        ICommand command = postClient.initCommand(request.getPathInfo(), getServletContext(), request, response);
         CommandInvoker commandInvoker = new HttpRequestInvoker(command);
 
         try {

@@ -1,6 +1,5 @@
 package ru.rsreu.notes.servlet;
 
-import ru.rsreu.notes.servlet.admin.getRequest.AddUserCommandGet;
 import ru.rsreu.notes.servlet.admin.postRequest.AddUserCommandPost;
 import ru.rsreu.notes.servlet.admin.postRequest.ChangeUserCommandPost;
 import ru.rsreu.notes.servlet.admin.postRequest.DeleteUserCommandPost;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class PostRequestClient extends HttpRequestClient {
     @Override
-    public Command initCommand(String path, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
+    public ICommand initCommand(String path, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
         if (isPath(path, Path.ADD_USER)) {
             return new AddUserCommandPost(servletContext, request, response);
         } else if (isPath(path, Path.LOGIN)) {

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GetRequestClient extends HttpRequestClient {
 
     @Override
-    public Command initCommand(String path, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
+    public ICommand initCommand(String path, ServletContext servletContext, HttpServletRequest request, HttpServletResponse response) {
         if (isPath(path, Path.ADD_USER)) {
             return new AddUserCommandGet(servletContext, request, response);
         } else if (isPath(path, Path.LOGIN)) {
